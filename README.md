@@ -1,1 +1,1 @@
-# Store-Locator-GeoJSON-
+# This is a prototype for project AroundUs.
