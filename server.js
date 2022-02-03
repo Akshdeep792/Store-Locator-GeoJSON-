@@ -13,6 +13,9 @@ const app = express();
 app.use(express.json());
 // Enable cors
 app.use(cors());
+
+app.use(express.static(path.join(__dirname, 'public')));
+
 //Router
 app.use('/api/v1/stores', require('./routes/stores'))
 
