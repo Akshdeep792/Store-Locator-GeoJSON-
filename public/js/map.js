@@ -1,10 +1,10 @@
 mapboxgl.accessToken =
-  'pk.eyJ1IjoiYnRyYXZlcnN5IiwiYSI6ImNqenY5MThjMDBqZ3YzY3A0N3ppZTA5Y2QifQ.LrFjedgw1wG34TkWCpNtFg';
+'pk.eyJ1IjoiY29kZWtpbmciLCJhIjoiY2t6NmpyZ3ZhMHptMTJxcnhzaDJiNnlpZSJ9.vn8_IgG9kcnCuwcgvTocWQ';
 const map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/mapbox/streets-v11',
   zoom: 9,
-  center: [-71.157895, 42.707741]
+  center: [76.7821, 30.3752]
 });
 
 // Fetch stores from API
@@ -12,7 +12,7 @@ async function getStores() {
   const res = await fetch('/api/v1/stores');
   const data = await res.json();
 
-  const stores = data.data.map(store => {
+  const stores = await data.data.map(store => {
     return {
       type: 'Feature',
       geometry: {
@@ -23,12 +23,12 @@ async function getStores() {
         ]
       },
       properties: {
-        storeId: store.storeId,
+        storeName: store.storeName,
         icon: 'shop'
       }
     };
   });
-
+console.log(stores);
   loadMap(stores);
 }
 
@@ -48,7 +48,7 @@ function loadMap(stores) {
       layout: {
         'icon-image': '{icon}-15',
         'icon-size': 1.5,
-        'text-field': '{storeId}',
+        'text-field': '{storeName}',
         'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
         'text-offset': [0, 0.9],
         'text-anchor': 'top'

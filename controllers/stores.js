@@ -3,7 +3,7 @@ const Store = require('../models/Store');
 // @desc  Get all stores
 // @route GET /api/v1/stores
 // @access Public
-exports.getStores = async (req, res, next) => {
+const getStores = async (req, res, next) => {
   try {
     const stores = await Store.find();
 
@@ -21,7 +21,7 @@ exports.getStores = async (req, res, next) => {
 // @desc  Create a store
 // @route POST /api/v1/stores
 // @access Public
-exports.addStore = async (req, res, next) => {
+const addStore = async (req, res, next) => {
   try {
     const store = await Store.create(req.body);
 
@@ -37,3 +37,5 @@ exports.addStore = async (req, res, next) => {
     res.status(500).json({ error: 'Server error' });
   }
 };
+
+module.exports = {getStores, addStore}
